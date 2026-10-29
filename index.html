@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Le texte injonctif — Rayan Moutawakkil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+<style>
+:root{--ink:#111;--muted:#666;--yellow:#ffe45c;--grid:rgba(17,17,17,.065);--line:#d9d9d9}
+*{box-sizing:border-box}html,body{height:100%;width:100%;margin:0}
+body{font-family:"Sora",Arial,sans-serif;color:var(--ink);background:#fff;overflow:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(to right,var(--grid) 1px,transparent 1px),linear-gradient(to bottom,var(--grid) 1px,transparent 1px);background-size:32px 32px;z-index:0}
+button{font:inherit;color:inherit}.deck{position:relative;z-index:1;width:100%;height:100%}
+.topbar{position:absolute;z-index:5;top:0;left:0;right:0;padding:20px clamp(18px,4vw,56px);display:flex;align-items:center;justify-content:space-between;font-size:11px;letter-spacing:.09em;text-transform:uppercase}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700}.brand-mark{width:9px;height:9px;border:1px solid var(--ink);background:var(--yellow)}.meta{color:var(--muted)}
+.slide{display:none;position:absolute;inset:0;padding:78px clamp(22px,9vw,126px) 88px;align-items:center;justify-content:center;animation:fade .18s ease both}.slide.active{display:flex}.content{width:min(100%,940px);margin:auto}
+.eyebrow{display:flex;align-items:center;gap:11px;margin:0 0 20px;color:var(--muted);font-size:11px;letter-spacing:.12em;text-transform:uppercase}.eyebrow:before{content:"";width:22px;height:2px;background:var(--ink)}
+h1,h2,h3,p{margin-top:0}h1{font-size:clamp(48px,10vw,118px);line-height:.98;letter-spacing:-.075em;font-weight:700;margin-bottom:0}h2{font-size:clamp(30px,5.4vw,59px);line-height:1.08;letter-spacing:-.06em;font-weight:650;margin-bottom:24px}h3{font-size:clamp(16px,2vw,21px);line-height:1.3;font-weight:600;margin-bottom:8px}p{font-size:clamp(15px,1.8vw,19px);line-height:1.65;max-width:760px}
+mark{color:inherit;background:linear-gradient(transparent 61%,var(--yellow) 61%,var(--yellow) 91%,transparent 91%);padding:0 .035em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.cover-kicker{font-size:clamp(25px,4.4vw,47px);font-weight:400;letter-spacing:-.06em;margin-bottom:9px}.cover-title{font-size:clamp(58px,12vw,136px);letter-spacing:-.09em;line-height:.98}
+.cover-bottom{margin-top:clamp(35px,7vh,64px);padding-top:16px;border-top:1px solid var(--line);display:flex;align-items:flex-start;justify-content:space-between;gap:20px}.author{font-size:13px;line-height:1.8;color:var(--muted)}.author strong{color:var(--ink);font-weight:600}.cover-caption{font-size:12px;line-height:1.6;color:var(--muted);text-align:right}
+.toc{margin-top:28px;border-top:1px solid var(--line)}.toc-row{display:grid;grid-template-columns:52px 1fr;gap:10px;padding:17px 0;border-bottom:1px solid var(--line);align-items:baseline}.roman{font-size:12px;color:var(--muted);letter-spacing:.08em}.toc-row strong{font-size:clamp(16px,2.2vw,22px);font-weight:500;letter-spacing:-.03em}
+.definition{max-width:820px;border-left:3px solid var(--yellow);padding:5px 0 5px 22px}.definition p{font-size:clamp(19px,2.7vw,28px);line-height:1.55;letter-spacing:-.035em}.definition strong{font-weight:600}.subnote{font-size:13px;color:var(--muted);margin-top:20px}
+.points{margin-top:22px;border-top:1px solid var(--line)}.point{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:15px 0;border-bottom:1px solid var(--line)}.point-num{font-size:12px;color:var(--muted);padding-top:4px}.point h3{margin:0 0 5px}.point p{font-size:14px;line-height:1.55;color:#4d4d4d;margin:0}
+.language-list{margin-top:22px;border-top:1px solid var(--line)}.language-row{display:grid;grid-template-columns:minmax(120px,.7fr) 1.4fr;gap:20px;padding:15px 0;border-bottom:1px solid var(--line);align-items:baseline}.language-row .kind{font-size:12px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}.language-row strong{font-size:clamp(15px,2vw,19px);font-weight:500}
+.example{max-width:780px;margin-top:24px}.example-label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}.steps{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}.steps li{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);font-size:clamp(15px,1.9vw,19px);line-height:1.5}.steps .n{color:var(--muted);font-size:12px;padding-top:4px}.steps strong{font-weight:600;background:linear-gradient(transparent 65%,var(--yellow) 65%,var(--yellow) 91%,transparent 91%)}
+.summary-list{margin-top:26px;max-width:800px}.summary-item{display:flex;gap:14px;align-items:flex-start;padding:15px 0;border-bottom:1px solid var(--line);font-size:clamp(16px,2.2vw,22px);line-height:1.5}.summary-item i{font-size:14px;margin-top:6px;width:20px;flex-shrink:0}
+.sources{border-top:1px solid var(--line);padding-top:12px;margin-top:22px}.sources p{font-size:11px;line-height:1.6;color:var(--muted);margin:5px 0;overflow-wrap:anywhere}.sources a{color:var(--ink);text-underline-offset:3px}
+.thanks h2{font-size:clamp(45px,8.5vw,94px);line-height:1.04}
+.bottom-bar{position:absolute;z-index:5;bottom:0;left:0;right:0;padding:14px clamp(18px,4vw,56px) 18px;display:flex;align-items:center;gap:13px}.controls{display:flex;gap:5px}.nav-btn{width:34px;height:34px;display:grid;place-items:center;border:1px solid #ccc;background:#fff;cursor:pointer;transition:background .12s,border-color .12s}.nav-btn:hover{background:var(--yellow);border-color:var(--ink)}.nav-btn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}.progress-track{height:2px;background:#e8e8e8;flex:1}.progress{height:100%;width:0;background:var(--ink);transition:width .18s}.counter{min-width:48px;text-align:right;font-size:11px;letter-spacing:.07em}.keys{font-size:10px;color:var(--muted);white-space:nowrap}
+@keyframes fade{from{opacity:.35}to{opacity:1}}
+@media(max-width:620px){.topbar{padding-top:15px}.slide{padding:70px 22px 85px}.cover-bottom{flex-direction:column;gap:8px}.cover-caption{text-align:left}.toc-row{grid-template-columns:34px 1fr;padding:14px 0}.language-row{grid-template-columns:1fr;gap:5px;padding:12px 0}.point{grid-template-columns:25px 1fr;gap:10px;padding:12px 0}.keys{display:none}}
+@media(max-height:650px) and (min-width:621px){.slide{padding-top:59px;padding-bottom:69px}.eyebrow{margin-bottom:12px}h2{margin-bottom:14px}.toc{margin-top:14px}.toc-row{padding:11px 0}.point{padding:9px 0}.language-list{margin-top:13px}.language-row{padding:10px 0}.example{margin-top:14px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
+/* Authentic source dialog */
+.source-open{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:12px 16px;background:#fff;color:#000;border:2px solid #000;border-radius:6px;font:600 13px 'Sora',sans-serif;cursor:pointer;transition:transform .15s ease}
+.source-open:active{transform:scale(.98)}
+.source-open i{font-size:13px}
+.source-dialog{position:fixed;inset:0;z-index:20;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.58)}
+.source-dialog.open{display:flex}
+.source-card{width:min(720px,100%);max-height:min(82vh,760px);overflow:auto;background:#fff;color:#111;border:2px solid #111;border-radius:8px;padding:clamp(22px,4vw,38px);position:relative}
+.source-card .eyebrow{margin-bottom:12px}
+.source-card h2{font-size:clamp(24px,4vw,36px);line-height:1.15;margin:0 38px 10px 0}
+.source-meta{font-size:12px;color:#666;margin:0 0 24px}
+.source-text{font-size:clamp(14px,1.8vw,16px);line-height:1.85}
+.source-text p{margin:0 0 14px}
+.source-text strong{background:linear-gradient(transparent 62%,#ffe66d 62%,#ffe66d 91%,transparent 91%);font-weight:600}
+.source-license{border-top:1px solid #e5e5e5;padding-top:15px;margin-top:22px;font-size:11px;line-height:1.7;color:#666}
+.source-license a{color:#111;text-decoration:underline;text-underline-offset:3px}
+.source-close{position:absolute;right:16px;top:16px;width:36px;height:36px;border:1px solid #ddd;border-radius:6px;background:#fff;color:#111;cursor:pointer;font-size:18px}
+@media(max-width:560px){.source-dialog{padding:12px}.source-card{padding:22px 18px}.source-close{right:12px;top:12px}.source-card h2{padding-right:26px}}
+
+</style>
+</head>
+<body>
+<div class="deck" aria-label="Diaporama : le texte injonctif">
+<header class="topbar"><div class="brand"><span class="brand-mark"></span><span>Typologie textuelle</span></div><div class="meta">Français · TCS3</div></header>
+
+<section class="slide active" aria-label="Titre"><div class="content">
+<p class="eyebrow">Exposé de français</p><div class="cover-kicker">Le texte</div><h1 class="cover-title"><mark>injonctif</mark></h1>
+<div class="cover-bottom"><div class="author"><strong>Rayan Moutawakkil</strong><br>Tronc Commun Scientifique 3</div><div class="cover-caption">Module I · Typologie textuelle<br>Définition, caractéristiques et procédés</div></div>
+</div></section>
+
+<section class="slide" aria-label="Sommaire"><div class="content">
+<p class="eyebrow">Plan de l’exposé</p><h2>Sommaire</h2><div class="toc">
+<div class="toc-row"><span class="roman">I</span><strong>Définition et intention de communication</strong></div>
+<div class="toc-row"><span class="roman">II</span><strong>Caractéristiques principales</strong></div>
+<div class="toc-row"><span class="roman">III</span><strong>Les procédés de l’injonction</strong></div>
+<div class="toc-row"><span class="roman">IV</span><strong>Exemple et synthèse</strong></div>
+</div></div></section>
+
+<section class="slide" aria-label="Définition"><div class="content">
+<p class="eyebrow">I · Définition</p><h2>Définir le texte <mark>injonctif</mark></h2>
+<div class="definition"><p>Le texte injonctif, également appelé <strong>texte prescriptif</strong>, vise à orienter le comportement du destinataire en lui indiquant une action à accomplir ou à éviter.</p></div>
+<p class="subnote">Son intention dominante est de faire agir : donner un ordre, formuler un conseil, énoncer une règle ou exprimer une interdiction.</p>
+</div></section>
+
+<section class="slide" aria-label="Caractéristiques principales"><div class="content">
+<p class="eyebrow">II · Caractéristiques</p><h2>Comment l’<mark>identifier</mark> ?</h2><div class="points">
+<div class="point"><span class="point-num">01</span><div><h3>Une visée pratique</h3><p>Le texte cherche à faire exécuter une action ou à faire respecter une règle.</p></div></div>
+<div class="point"><span class="point-num">02</span><div><h3>Un destinataire clairement visé</h3><p>Les consignes s’adressent souvent à « tu », « vous » ou à un lecteur implicite.</p></div></div>
+<div class="point"><span class="point-num">03</span><div><h3>Des procédés de prescription</h3><p>Les verbes et les expressions employés marquent l’ordre, le conseil, l’obligation ou l’interdiction.</p></div></div>
+<div class="point"><span class="point-num">04</span><div><h3>Une organisation logique</h3><p>Dans une recette ou un mode d’emploi, les consignes se succèdent selon un ordre précis.</p></div></div>
+</div></div></section>
+
+<section class="slide" aria-label="Procédés linguistiques"><div class="content">
+<p class="eyebrow">III · Les procédés de l’injonction</p><h2>Les formes <mark>verbales</mark></h2>
+<p>Le mode impératif est fréquent, mais l’injonction peut être exprimée par plusieurs constructions.</p>
+<div class="language-list">
+<div class="language-row"><span class="kind">Impératif</span><strong>Déposez vos sacs ici.</strong></div>
+<div class="language-row"><span class="kind">Infinitif</span><strong>Ne pas toucher.</strong></div>
+<div class="language-row"><span class="kind">Obligation</span><strong>Il faut respecter les consignes.</strong></div>
+<div class="language-row"><span class="kind">Conseil · conditionnel</span><strong>Tu devrais réviser régulièrement.</strong></div>
+<div class="language-row"><span class="kind">Subjonctif après « vouloir »</span><strong>Je veux que tu reviennes.</strong></div>
+</div></div></section>
+
+<section class="slide" aria-label="Exemple"><div class="content">
+<p class="eyebrow">IV · Application</p><h2>Exemple : une <mark>consigne</mark></h2><div class="example">
+<div class="example-label">Préparer un thé</div><ol class="steps">
+<li><span class="n">01</span><span><strong>Faites chauffer</strong> de l’eau.</span></li>
+<li><span class="n">02</span><span><strong>Placez</strong> le thé dans une tasse.</span></li>
+<li><span class="n">03</span><span><strong>Versez</strong> l’eau chaude.</span></li>
+<li><span class="n">04</span><span><strong>Laissez infuser</strong> quelques minutes, puis servez.</span></li>
+</ol></div><p class="subnote">Les verbes mis en évidence sont à l’impératif : ils formulent directement les étapes à suivre.</p>
+</div></section>
+
+<section class="slide" aria-label="Synthèse"><div class="content">
+<p class="eyebrow">Bilan</p><h2>L’essentiel à <mark>retenir</mark></h2><div class="summary-list">
+<div class="summary-item"><i class="fa-solid fa-check" aria-hidden="true"></i><span>Le texte injonctif cherche à faire agir le destinataire.</span></div>
+<div class="summary-item"><i class="fa-solid fa-check" aria-hidden="true"></i><span>Il peut exprimer un ordre, un conseil, une obligation ou une interdiction.</span></div>
+<div class="summary-item"><i class="fa-solid fa-check" aria-hidden="true"></i><span>L’impératif est un indice important, mais il n’est pas le seul procédé possible.</span></div>
+</div></div></section>
+
+<section class="slide" aria-label="Conclusion et références"><div class="content thanks">
+<p class="eyebrow">Conclusion</p><h2>Merci pour<br><mark>votre attention.</mark></h2><p>Des questions ?</p>
+<div class="author" style="margin-top:18px"><strong>Rayan Moutawakkil</strong><br>TCS3 · Français</div>
+<button class="source-open" id="open-source" type="button"><i class="fa-solid fa-book-open" aria-hidden="true"></i> Lire un texte injonctif original <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></button>
+<div class="sources"><p><strong>Références pédagogiques</strong></p>
+<p>• <a href="https://www.profziani.com/prof-ziani-module-typologie-textuelle-tronc-commun-toutes-branches-lycee-maroc-article-modifiable.html" target="_blank" rel="noopener">Prof Ziani — Module de typologie textuelle, Tronc commun</a> : séquence sur le texte prescriptif / injonctif et procédés de prescription.</p>
+<p>• <a href="https://www.9raya.ma/tronc-commun/tc-sciences/francais/typologie-textuelle" target="_blank" rel="noopener">9raya.ma — Français, Tronc commun Sciences : la typologie textuelle</a>.</p>
+</div></div></section>
+
+
+<div class="source-dialog" id="source-dialog" role="dialog" aria-modal="true" aria-labelledby="source-title" aria-hidden="true">
+  <div class="source-card">
+    <button class="source-close" id="close-source" type="button" aria-label="Fermer">×</button>
+    <p class="eyebrow">Texte injonctif</p>
+    <h2 id="source-title">Réussir un exposé oral</h2>
+    <p class="source-meta">Auteur : ChatGPT</p>
+    <div class="source-text">
+      <p>Pour réussir un exposé oral, <strong>prépare</strong> ton sujet à l’avance et <strong>organise</strong> tes idées dans un ordre logique. Commence par une introduction courte, puis présente les informations essentielles dans plusieurs parties. Enfin, termine par une conclusion qui résume les points importants.</p>
+      <p><strong>Documente-toi</strong> à partir de sources fiables et <strong>vérifie</strong> les informations que tu utilises. <strong>Note</strong> les références des documents consultés et <strong>évite</strong> de recopier un texte sans le comprendre. Choisis des exemples simples pour expliquer les idées difficiles.</p>
+      <p>Le jour de la présentation, <strong>parle</strong> clairement et <strong>regarde</strong> ton public. <strong>Articule</strong> les mots, <strong>respecte</strong> le temps prévu et <strong>ne lis</strong> pas toutes tes phrases directement sur les feuilles. Si tu fais une erreur, <strong>reprends</strong> calmement ton explication et continue.</p>
+      <p><strong>Écoute</strong> les questions jusqu’au bout avant d’y répondre. Si tu ne connais pas la réponse, <strong>reconnais-le</strong> honnêtement et propose de vérifier l’information. <strong>Entraîne-toi</strong> plusieurs fois avant le jour J : une bonne préparation aide à parler avec confiance.</p>
+    </div>
+    <div class="source-license">
+      <strong>Crédit et droits :</strong> texte original attribué à ChatGPT. Il ne s’agit pas d’un extrait d’un livre publié.
+    </div>
+  </div>
+</div>
+
+<footer class="bottom-bar"><div class="controls">
+<button class="nav-btn" id="prev" aria-label="Diapositive précédente" title="Précédent (P)"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i></button>
+<button class="nav-btn" id="next" aria-label="Diapositive suivante" title="Suivant (S)"><i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
+</div><div class="progress-track"><div class="progress" id="progress"></div></div><div class="counter"><span id="current">01</span> / <span id="total">08</span></div><div class="keys">P : précédent · S : suivant</div></footer>
+</div>
+<script>
+(()=>{const slides=[...document.querySelectorAll('.slide')],current=document.getElementById('current'),total=document.getElementById('total'),progress=document.getElementById('progress');let index=0;total.textContent=String(slides.length).padStart(2,'0');function show(n){index=Math.max(0,Math.min(slides.length-1,n));slides.forEach((s,i)=>{s.classList.toggle('active',i===index);s.setAttribute('aria-hidden',i===index?'false':'true')});current.textContent=String(index+1).padStart(2,'0');progress.style.width=((index+1)/slides.length*100)+'%'}const next=()=>show(index+1),prev=()=>show(index-1);
+const dialog=document.getElementById('source-dialog'),openSource=document.getElementById('open-source'),closeSource=document.getElementById('close-source');
+function closeDialog(){dialog.classList.remove('open');dialog.setAttribute('aria-hidden','true');openSource.focus()}
+openSource.addEventListener('click',()=>{dialog.classList.add('open');dialog.setAttribute('aria-hidden','false');closeSource.focus()});
+closeSource.addEventListener('click',closeDialog);
+dialog.addEventListener('click',e=>{if(e.target===dialog)closeDialog()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&dialog.classList.contains('open'))closeDialog()});
+document.getElementById('next').addEventListener('click',next);document.getElementById('prev').addEventListener('click',prev);document.addEventListener('keydown',e=>{if(dialog.classList.contains('open'))return;if(e.altKey||e.ctrlKey||e.metaKey)return;const k=e.key.toLowerCase();if(k==='s'||k==='arrowright'||k===' '){e.preventDefault();next()}else if(k==='p'||k==='arrowleft'){e.preventDefault();prev()}else if(k==='home')show(0);else if(k==='end')show(slides.length-1)});let startX=null;document.addEventListener('touchstart',e=>{startX=e.changedTouches[0].clientX},{passive:true});document.addEventListener('touchend',e=>{if(startX===null)return;const dx=e.changedTouches[0].clientX-startX;if(Math.abs(dx)>60)dx<0?next():prev();startX=null},{passive:true});show(0)})();
+</script>
+</body>
+</html>
